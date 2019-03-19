@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/NYTimes/ios-360-videos.git', :tag => s.version.to_s }
 
     s.ios.deployment_target = '8.0'
+    s.tvos.deployment_target = '10.0'
 
     s.source_files = 'Sources/**/*.{h,m}'
     s.public_header_files = 'Sources/NYT360Video.h', 'Sources/NYT360ViewController.h', 'Sources/NYT360DataTypes.h', 'Sources/NYT360MotionManagement.h', 'Sources/NYT360MotionManager.h', 'Sources/NYT360CameraPanGestureRecognizer.h'
