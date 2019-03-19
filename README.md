@@ -1,3 +1,8 @@
+## True[X] Readme
+This is the effor for adding tvOS support to the nyt360 library.
+
+=-=-=-=-=-=-=-=-=-=-=-=-=
+
 # NYT360Video
 [![Version](https://img.shields.io/cocoapods/v/NYT360Video.svg?style=flat)](http://cocoapods.org/pods/NYT360Video)
 [![License](https://img.shields.io/cocoapods/l/NYT360Video.svg?style=flat)](http://cocoapods.org/pods/NYT360Video)
