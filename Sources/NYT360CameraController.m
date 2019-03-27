@@ -105,11 +105,18 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
 #endif
 #endif
 
+    
+    
+    NYT360EulerAngleCalculationResult result;
+#if !TARGET_OS_TV
     CMRotationRate rotationRate = self.motionManager.deviceMotion.rotationRate;
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 
-    NYT360EulerAngleCalculationResult result;
     result = NYT360DeviceMotionCalculation(self.currentPosition, rotationRate, orientation, self.allowedDeviceMotionPanningAxes, NYT360EulerAngleCalculationNoiseThresholdDefault);
+#else
+    // TODO: are these all needed?
+    result = NYT360DeviceMotionCalculation(self.currentPosition, self.allowedDeviceMotionPanningAxes, NYT360EulerAngleCalculationNoiseThresholdDefault);
+#endif
     self.currentPosition = result.position;
     self.pointOfView.eulerAngles = result.eulerAngles;
 
@@ -155,6 +162,37 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
     }
     
 }
+
+- (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated {
+
+    if (animated) {
+        self.isAnimatingReorientation = YES;
+        [SCNTransaction begin];
+        [SCNTransaction setAnimationDuration:[CATransaction animationDuration]];
+    }
+    
+    CGPoint position = self.currentPosition;
+    position.y = 0;
+    self.currentPosition = position;
+    
+    SCNVector3 eulerAngles = self.pointOfView.eulerAngles;
+    eulerAngles.x = verticalDegree; // Vertical camera angle = rotation around the x axis.
+    eulerAngles.y = horizontalDegree;
+    self.pointOfView.eulerAngles = eulerAngles;
+    
+    if (animated) {
+        [SCNTransaction setCompletionBlock:^{
+            // Reset the transaction duration to 0 since otherwise further
+            // updates from device motion and pan gesture recognition would be
+            // subject to a non-zero implicit duration.
+            [SCNTransaction setAnimationDuration:0];
+            self.isAnimatingReorientation = NO;
+        }];
+        [SCNTransaction commit];
+    }
+    
+}
+
 
 #pragma mark - Panning Options
 

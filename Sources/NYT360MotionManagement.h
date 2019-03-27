@@ -7,7 +7,9 @@
 //
 
 @import Foundation;
+#if !TARGET_OS_TV
 @import CoreMotion;
+#endif
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -50,10 +52,12 @@ typedef id<NSObject, NSCopying> NYT360MotionManagementToken;
  */
 @property (nonatomic, readonly, getter=isDeviceMotionActive) BOOL deviceMotionActive;
 
+#if !TARGET_OS_TV
 /**
  Returns the latest sample of device motion data, or nil if none is available.
  */
 @property (nonatomic, readonly, nullable) CMDeviceMotion *deviceMotion;
+#endif
 
 /**
  Begins updating device motion, if it hasn't begun already.

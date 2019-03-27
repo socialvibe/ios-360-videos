@@ -8,7 +8,9 @@
 
 @import UIKit;
 @import SceneKit;
+#if !TARGET_OS_TV
 @import CoreMotion;
+#endif
 
 extern CGFloat const NYT360EulerAngleCalculationNoiseThresholdDefault;
 extern float const NYT360EulerAngleCalculationDefaultReferenceCompassAngle;
@@ -27,7 +29,11 @@ typedef struct NYT360EulerAngleCalculationResult NYT360EulerAngleCalculationResu
 
 NYT360EulerAngleCalculationResult NYT360UpdatedPositionAndAnglesForAllowedAxes(CGPoint position, NYT360PanningAxis allowedPanningAxes);
 
+#if !TARGET_OS_TV
 NYT360EulerAngleCalculationResult NYT360DeviceMotionCalculation(CGPoint position, CMRotationRate rotationRate, UIInterfaceOrientation orientation, NYT360PanningAxis allowedPanningAxes, CGFloat noiseThreshold);
+#else
+NYT360EulerAngleCalculationResult NYT360DeviceMotionCalculation(CGPoint position, NYT360PanningAxis allowedPanningAxes, CGFloat noiseThreshold);
+#endif
 
 NYT360EulerAngleCalculationResult NYT360PanGestureChangeCalculation(CGPoint position, CGPoint rotateDelta, CGSize viewSize, NYT360PanningAxis allowedPanningAxes);
 

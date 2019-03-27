@@ -8,7 +8,9 @@
 
 @import UIKit;
 @import SceneKit;
+#if !TARGET_OS_TV
 @import CoreMotion;
+#endif
 
 #import "NYT360DataTypes.h"
 #import "NYT360MotionManagement.h"
@@ -103,6 +105,13 @@ NS_ASSUME_NONNULL_BEGIN
  *  @param animated Passing `YES` will animate the change with a standard duration.
  */
 - (void)reorientVerticalCameraAngleToHorizon:(BOOL)animated;
+
+/**
+ *  Allow programmatically orient camera's angle component with x, y as input
+ *
+ *  @param animated Passing `YES` will animate the change with a standard duration.
+ */
+- (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated;
 
 #pragma mark - Panning Options
 

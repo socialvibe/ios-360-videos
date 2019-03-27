@@ -63,6 +63,7 @@ NYT360EulerAngleCalculationResult NYT360UpdatedPositionAndAnglesForAllowedAxes(C
     return NYT360EulerAngleCalculationResultMake(position, eulerAngles);
 }
 
+#if !TARGET_OS_TV
 NYT360EulerAngleCalculationResult NYT360DeviceMotionCalculation(CGPoint position, CMRotationRate rotationRate, UIInterfaceOrientation orientation, NYT360PanningAxis allowedPanningAxes, CGFloat noiseThreshold) {
     
     static CGFloat NYT360EulerAngleCalculationRotationRateDampingFactor = 0.02;
@@ -118,6 +119,65 @@ NYT360EulerAngleCalculationResult NYT360DeviceMotionCalculation(CGPoint position
     
     return NYT360EulerAngleCalculationResultMake(position, eulerAngles);
 }
+#else
+
+NYT360EulerAngleCalculationResult NYT360DeviceMotionCalculation(CGPoint position, NYT360PanningAxis allowedPanningAxes, CGFloat noiseThreshold) {
+    
+    static CGFloat NYT360EulerAngleCalculationRotationRateDampingFactor = 0.02;
+    
+    // On some devices, the rotation rates exhibit a low-level drift on one or
+    // more rotation axes. The symptom expressions are not identical, but they
+    // appear to be related to low component quality (iPhone 5c versus higher
+    // end devices) and/or rough usage (drops, etc). In an ideal scenario, we
+    // could ask users to calibrate their gyroscopes and apply a corrective
+    // factor to all inputs. Barring that, the next best thing we can try is to
+    // add a low-pass filter which ignores input less than a given threshold.
+    // In my non-scientific testing with the only affected devices at my
+    // disposal, I found that a noise threshold between 0.10 and 0.15 filtered
+    // out the noise with a minimal loss in sensitivity. Less than 0.10 and the
+    // 360 camera position starts to drift.
+    // ~ Jared Sinclair, August 1, 2016.
+    // See also: https://forums.developer.apple.com/thread/12049
+    
+    //    if (fabs(rotationRate.x) < noiseThreshold) {
+    //        rotationRate.x = 0;
+    //    }
+    //
+    //    if (fabs(rotationRate.y) < noiseThreshold) {
+    //        rotationRate.y = 0;
+    //    }
+    //
+    CGFloat damping = NYT360EulerAngleCalculationRotationRateDampingFactor;
+    
+    // TODO: [thiago] I think this can be simplified later
+    //    if (UIInterfaceOrientationIsLandscape(orientation)) {
+    //        if (orientation == UIInterfaceOrientationLandscapeLeft) {
+    //            position = CGPointMake(position.x + rotationRate.x * damping * -1,
+    //                                   position.y + rotationRate.y * damping);
+    //        }
+    //        else {
+    //            position = CGPointMake(position.x + rotationRate.x * damping,
+    //                                   position.y + rotationRate.y * damping * -1);
+    //        }
+    //    }
+    //    else {
+    //        position = CGPointMake(position.x + rotationRate.y * damping,
+    //                               position.y - rotationRate.x * damping * -1);
+    //    }
+    position = CGPointMake(position.x,
+                           NYT360Clamp(position.y, -M_PI / 2, M_PI / 2));
+    
+    // Zero-out these values here rather than above, since that would over-
+    // complicate the if/else logic or require unreadable numbers of ternary
+    // operators.
+    position = NYT360AdjustPositionForAllowedAxes(position, allowedPanningAxes);
+    
+    SCNVector3 eulerAngles = SCNVector3Make(position.y, position.x, 0);
+    
+    return NYT360EulerAngleCalculationResultMake(position, eulerAngles);
+}
+#endif
+
 
 NYT360EulerAngleCalculationResult NYT360PanGestureChangeCalculation(CGPoint position, CGPoint rotateDelta, CGSize viewSize, NYT360PanningAxis allowedPanningAxes) {
     
