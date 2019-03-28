@@ -51,6 +51,12 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
         _pointOfView = view.pointOfView;
         _view = view;
         _currentPosition = startingPosition;
+        
+        SCNVector3 eulerAngles = _pointOfView.eulerAngles;
+        eulerAngles.x = startingPosition.y;
+        eulerAngles.y = startingPosition.x;
+        _pointOfView.eulerAngles = eulerAngles;
+        
         _allowedDeviceMotionPanningAxes = NYT360PanningAxisHorizontal | NYT360PanningAxisVertical;
         _allowedPanGesturePanningAxes = NYT360PanningAxisHorizontal | NYT360PanningAxisVertical;
         
@@ -179,6 +185,7 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
     eulerAngles.x = verticalDegree; // Vertical camera angle = rotation around the x axis.
     eulerAngles.y = horizontalDegree;
     self.pointOfView.eulerAngles = eulerAngles;
+    self.currentPosition = CGPointMake(horizontalDegree, verticalDegree);
     
     if (animated) {
         [SCNTransaction setCompletionBlock:^{
@@ -210,9 +217,12 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
     // TODO: [jaredsinclair] Consider adding an animated version of this method.
     if (_allowedPanGesturePanningAxes != allowedPanGesturePanningAxes) {
         _allowedPanGesturePanningAxes = allowedPanGesturePanningAxes;
-        NYT360EulerAngleCalculationResult result = NYT360UpdatedPositionAndAnglesForAllowedAxes(self.currentPosition, allowedPanGesturePanningAxes);
-        self.currentPosition = result.position;
-        self.pointOfView.eulerAngles = result.eulerAngles;
+        if (self.allowedPanGesturePanningAxes !=  0) {
+            NYT360EulerAngleCalculationResult result = NYT360UpdatedPositionAndAnglesForAllowedAxes(self.currentPosition, allowedPanGesturePanningAxes);
+            self.currentPosition = result.position;
+            self.pointOfView.eulerAngles = result.eulerAngles;
+            
+        }
     }
 }
 
@@ -231,6 +241,9 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
             self.rotateStart = point;
             break;
         case UIGestureRecognizerStateChanged:
+            if (self.allowedPanGesturePanningAxes ==  0) {
+                break;
+            }
             self.rotateCurrent = point;
             self.rotateDelta = subtractPoints(self.rotateStart, self.rotateCurrent);
             self.rotateStart = self.rotateCurrent;
