@@ -200,6 +200,17 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
     
 }
 
+- (void)transformCameraAngleWithDeltaHorizontal:(CGFloat)horizontalDegree deltaVertical:(CGFloat)verticalDegree animated:(BOOL)animated {
+    SCNVector3 eulerAngles = self.pointOfView.eulerAngles;
+    CGFloat newVerticalDegree = eulerAngles.x + verticalDegree;
+    CGFloat newHorizontalDegree = eulerAngles.y + horizontalDegree;
+    if (newVerticalDegree > M_PI/2) {
+        newVerticalDegree = M_PI/2;
+    } else if (newVerticalDegree < -M_PI/2) {
+        newVerticalDegree = -M_PI/2;
+    }
+    [self orientCameraAngleToHorizontal:newHorizontalDegree vertical:newVerticalDegree animated:animated];
+}
 
 #pragma mark - Panning Options
 

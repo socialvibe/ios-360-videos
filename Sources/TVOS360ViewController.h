@@ -15,4 +15,23 @@
  */
 - (id)initWithAVPlayer:(AVPlayer *)player;
 
+/**
+ *  Allow programmatically orient camera's angle component with x, y as input
+ *
+ *  @param animated Passing `YES` will animate the change with a standard duration.
+ */
+- (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated;
+
+/**
+ *  Allow programmatically transform camera's angle component with x, y as input
+ *
+ *  @param animated Passing `YES` will animate the change with a standard duration.
+ */
+- (void)transformCameraAngleWithDeltaHorizontal:(CGFloat)horizontalDegree deltaVertical:(CGFloat)verticalDegree animated:(BOOL)animated;
+
+/**
+ *  Allow caller request the current viewing angle
+ */
+- (SCNVector3)getEulerAngles;
+
 @end

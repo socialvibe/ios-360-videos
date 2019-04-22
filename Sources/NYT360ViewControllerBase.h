@@ -111,13 +111,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)reorientVerticalCameraAngleToHorizon:(BOOL)animated;
 
-/**
- *  Allow programmatically orient camera's angle component with x, y as input
- *
- *  @param animated Passing `YES` will animate the change with a standard duration.
- */
-- (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated;
-
 @end
 
 NS_ASSUME_NONNULL_END

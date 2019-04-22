@@ -113,6 +113,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated;
 
+/**
+ *  Allow programmatically orient camera's angle component with x, y as input
+ *
+ *
+ */
+- (void)transformCameraAngleWithDeltaHorizontal:(CGFloat)horizontalDegree deltaVertical:(CGFloat)verticalDegree animated:(BOOL)animated;
+
 #pragma mark - Panning Options
 
 /**

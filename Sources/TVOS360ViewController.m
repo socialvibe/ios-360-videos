@@ -37,4 +37,17 @@
     return self;
 }
 
+- (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated {
+    [self.cameraController orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated];
+}
+
+- (void)transformCameraAngleWithDeltaHorizontal:(CGFloat)horizontalDegree deltaVertical:(CGFloat)verticalDegree animated:(BOOL)animated {
+    [self.cameraController transformCameraAngleWithDeltaHorizontal:horizontalDegree deltaVertical:verticalDegree animated:(BOOL)animated];
+}
+
+- (SCNVector3)getEulerAngles {
+    SCNVector3 eulerAngles = self.sceneView.pointOfView.eulerAngles;
+    return eulerAngles;
+}
+
 @end
