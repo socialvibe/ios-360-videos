@@ -7,7 +7,9 @@
 //
 
 @import Foundation;
+#if !TARGET_OS_TV
 @import CoreMotion;
+#endif
 
 #import "NYT360MotionManagement.h"
 
