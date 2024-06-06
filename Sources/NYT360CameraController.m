@@ -51,6 +51,12 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
         _pointOfView = view.pointOfView;
         _view = view;
         _currentPosition = startingPosition;
+        
+        SCNVector3 eulerAngles = _pointOfView.eulerAngles;
+        eulerAngles.x = startingPosition.y;
+        eulerAngles.y = startingPosition.x;
+        _pointOfView.eulerAngles = eulerAngles;
+        
         _allowedDeviceMotionPanningAxes = NYT360PanningAxisHorizontal | NYT360PanningAxisVertical;
         _allowedPanGesturePanningAxes = NYT360PanningAxisHorizontal | NYT360PanningAxisVertical;
         
@@ -105,11 +111,18 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
 #endif
 #endif
 
+    
+    
+    NYT360EulerAngleCalculationResult result;
+#if !TARGET_OS_TV
     CMRotationRate rotationRate = self.motionManager.deviceMotion.rotationRate;
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
 
-    NYT360EulerAngleCalculationResult result;
     result = NYT360DeviceMotionCalculation(self.currentPosition, rotationRate, orientation, self.allowedDeviceMotionPanningAxes, NYT360EulerAngleCalculationNoiseThresholdDefault);
+#else
+    // TODO: are these all needed?
+    result = NYT360DeviceMotionCalculation(self.currentPosition, self.allowedDeviceMotionPanningAxes, NYT360EulerAngleCalculationNoiseThresholdDefault);
+#endif
     self.currentPosition = result.position;
     self.pointOfView.eulerAngles = result.eulerAngles;
 
@@ -156,6 +169,49 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
     
 }
 
+- (void)orientCameraAngleToHorizontal:(CGFloat)horizontalDegree vertical:(CGFloat)verticalDegree animated:(BOOL)animated {
+
+    if (animated) {
+        self.isAnimatingReorientation = YES;
+        [SCNTransaction begin];
+        [SCNTransaction setAnimationDuration:[CATransaction animationDuration]];
+    }
+    
+    CGPoint position = self.currentPosition;
+    position.y = 0;
+    self.currentPosition = position;
+    
+    SCNVector3 eulerAngles = self.pointOfView.eulerAngles;
+    eulerAngles.x = verticalDegree; // Vertical camera angle = rotation around the x axis.
+    eulerAngles.y = horizontalDegree;
+    self.pointOfView.eulerAngles = eulerAngles;
+    self.currentPosition = CGPointMake(horizontalDegree, verticalDegree);
+    
+    if (animated) {
+        [SCNTransaction setCompletionBlock:^{
+            // Reset the transaction duration to 0 since otherwise further
+            // updates from device motion and pan gesture recognition would be
+            // subject to a non-zero implicit duration.
+            [SCNTransaction setAnimationDuration:0];
+            self.isAnimatingReorientation = NO;
+        }];
+        [SCNTransaction commit];
+    }
+    
+}
+
+- (void)transformCameraAngleWithDeltaHorizontal:(CGFloat)horizontalDegree deltaVertical:(CGFloat)verticalDegree animated:(BOOL)animated {
+    SCNVector3 eulerAngles = self.pointOfView.eulerAngles;
+    CGFloat newVerticalDegree = eulerAngles.x + verticalDegree;
+    CGFloat newHorizontalDegree = eulerAngles.y + horizontalDegree;
+    if (newVerticalDegree > M_PI/2) {
+        newVerticalDegree = M_PI/2;
+    } else if (newVerticalDegree < -M_PI/2) {
+        newVerticalDegree = -M_PI/2;
+    }
+    [self orientCameraAngleToHorizontal:newHorizontalDegree vertical:newVerticalDegree animated:animated];
+}
+
 #pragma mark - Panning Options
 
 - (void)setAllowedDeviceMotionPanningAxes:(NYT360PanningAxis)allowedDeviceMotionPanningAxes {
@@ -172,9 +228,12 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
     // TODO: [jaredsinclair] Consider adding an animated version of this method.
     if (_allowedPanGesturePanningAxes != allowedPanGesturePanningAxes) {
         _allowedPanGesturePanningAxes = allowedPanGesturePanningAxes;
-        NYT360EulerAngleCalculationResult result = NYT360UpdatedPositionAndAnglesForAllowedAxes(self.currentPosition, allowedPanGesturePanningAxes);
-        self.currentPosition = result.position;
-        self.pointOfView.eulerAngles = result.eulerAngles;
+        if (self.allowedPanGesturePanningAxes !=  0) {
+            NYT360EulerAngleCalculationResult result = NYT360UpdatedPositionAndAnglesForAllowedAxes(self.currentPosition, allowedPanGesturePanningAxes);
+            self.currentPosition = result.position;
+            self.pointOfView.eulerAngles = result.eulerAngles;
+            
+        }
     }
 }
 
@@ -193,6 +252,9 @@ static inline CGPoint subtractPoints(CGPoint a, CGPoint b) {
             self.rotateStart = point;
             break;
         case UIGestureRecognizerStateChanged:
+            if (self.allowedPanGesturePanningAxes ==  0) {
+                break;
+            }
             self.rotateCurrent = point;
             self.rotateDelta = subtractPoints(self.rotateStart, self.rotateCurrent);
             self.rotateStart = self.rotateCurrent;

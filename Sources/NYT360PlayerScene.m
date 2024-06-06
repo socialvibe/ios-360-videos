@@ -88,7 +88,13 @@
         
         SKScene *skScene = ({
 			AVAssetTrack *assetTrack = [[player.currentItem.asset tracksWithMediaType:AVMediaTypeVideo] firstObject];
-			CGSize assetDimensions = assetTrack ? CGSizeApplyAffineTransform(assetTrack.naturalSize, assetTrack.preferredTransform) : CGSizeMake(1280, 1280);
+            
+#if !TARGET_OS_TV
+            CGSize sceneSize = CGSizeMake(1280, 1280);
+#else
+            CGSize sceneSize = CGSizeMake(3840, 2160);
+#endif
+			CGSize assetDimensions = assetTrack ? CGSizeApplyAffineTransform(assetTrack.naturalSize, assetTrack.preferredTransform) : sceneSize;
 			SKScene *scene = [[SKScene alloc] initWithSize:CGSizeMake(fabsf(assetDimensions.width), fabsf(assetDimensions.height))];
             scene.shouldRasterize = YES;
             scene.scaleMode = SKSceneScaleModeAspectFit;

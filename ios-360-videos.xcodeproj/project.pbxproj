@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		276E737D2242ED3300DF929D /* TVOS360Video.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 276E737C2242ED3300DF929D /* TVOS360Video.podspec */; };
+		276E737F2242ED4F00DF929D /* TVOS360Video.h in Headers */ = {isa = PBXBuildFile; fileRef = 276E737E2242ED4F00DF929D /* TVOS360Video.h */; };
+		276E73862242F48B00DF929D /* TVOS360ViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 276E73842242F48B00DF929D /* TVOS360ViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		276E73872242F48B00DF929D /* TVOS360ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E73852242F48B00DF929D /* TVOS360ViewController.m */; };
+		276E73D7224308E500DF929D /* NYT360ViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E73D5224308E500DF929D /* NYT360ViewControllerBase.m */; };
+		276E73D8224308E500DF929D /* NYT360ViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E73D5224308E500DF929D /* NYT360ViewControllerBase.m */; };
+		276E73D9224308E500DF929D /* NYT360ViewControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 276E73D5224308E500DF929D /* NYT360ViewControllerBase.m */; };
+		276E73DA224308E500DF929D /* NYT360ViewControllerBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 276E73D6224308E500DF929D /* NYT360ViewControllerBase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		470DB5DC1D4950FC001DD20C /* NYT360DataTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 470DB5D91D494F90001DD20C /* NYT360DataTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		470DB5DD1D49A058001DD20C /* NYT360CameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 934A49831D46B446001AD295 /* NYT360CameraController.m */; };
 		470DB5DE1D49A058001DD20C /* NYT360EulerAngleCalculations.m in Sources */ = {isa = PBXBuildFile; fileRef = 47DCD2A21D493E1400FBCD4B /* NYT360EulerAngleCalculations.m */; };
@@ -67,6 +75,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		276E737C2242ED3300DF929D /* TVOS360Video.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TVOS360Video.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		276E737E2242ED4F00DF929D /* TVOS360Video.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVOS360Video.h; sourceTree = "<group>"; };
+		276E73842242F48B00DF929D /* TVOS360ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVOS360ViewController.h; sourceTree = "<group>"; };
+		276E73852242F48B00DF929D /* TVOS360ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVOS360ViewController.m; sourceTree = "<group>"; };
+		276E73D5224308E500DF929D /* NYT360ViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYT360ViewControllerBase.m; sourceTree = "<group>"; };
+		276E73D6224308E500DF929D /* NYT360ViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYT360ViewControllerBase.h; sourceTree = "<group>"; };
 		470DB5D91D494F90001DD20C /* NYT360DataTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYT360DataTypes.h; sourceTree = "<group>"; };
 		472324FC1D523F6000784F8F /* NYT360MotionManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYT360MotionManagement.h; sourceTree = "<group>"; };
 		472324FD1D5240DF00784F8F /* NYT360MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYT360MotionManager.h; sourceTree = "<group>"; };
@@ -169,7 +183,12 @@
 				934A49851D46B446001AD295 /* NYT360PlayerScene.m */,
 				934A49861D46B446001AD295 /* NYT360ViewController.h */,
 				934A49871D46B446001AD295 /* NYT360ViewController.m */,
+				276E73D6224308E500DF929D /* NYT360ViewControllerBase.h */,
+				276E73D5224308E500DF929D /* NYT360ViewControllerBase.m */,
 				934A494C1D46B0A1001AD295 /* NYT360Video.h */,
+				276E737E2242ED4F00DF929D /* TVOS360Video.h */,
+				276E73842242F48B00DF929D /* TVOS360ViewController.h */,
+				276E73852242F48B00DF929D /* TVOS360ViewController.m */,
 				934A49531D46B119001AD295 /* Info.plist */,
 			);
 			path = Sources;
@@ -179,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				934A49961D46BBB6001AD295 /* NYT360Video.podspec */,
+				276E737C2242ED3300DF929D /* TVOS360Video.podspec */,
 				934A49571D46B32D001AD295 /* README.md */,
 				934A49561D46B32D001AD295 /* LICENSE.md */,
 			);
@@ -233,11 +253,14 @@
 				934A494D1D46B0A1001AD295 /* NYT360Video.h in Headers */,
 				472325011D524AB600784F8F /* NYT360MotionManagement.h in Headers */,
 				470DB5DC1D4950FC001DD20C /* NYT360DataTypes.h in Headers */,
+				276E73DA224308E500DF929D /* NYT360ViewControllerBase.h in Headers */,
 				472324FF1D5240DF00784F8F /* NYT360MotionManager.h in Headers */,
+				276E73862242F48B00DF929D /* TVOS360ViewController.h in Headers */,
 				47ACFE341D54DFC70054F8D0 /* NYT360CameraPanGestureRecognizer.h in Headers */,
 				934A49881D46B446001AD295 /* NYT360CameraController.h in Headers */,
 				47DCD2A31D493E1400FBCD4B /* NYT360EulerAngleCalculations.h in Headers */,
 				934A498A1D46B446001AD295 /* NYT360PlayerScene.h in Headers */,
+				276E737F2242ED4F00DF929D /* TVOS360Video.h in Headers */,
 				934A498C1D46B446001AD295 /* NYT360ViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,6 +340,7 @@
 					};
 					934A496A1D46B3FD001AD295 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = GRNA8M72WM;
 					};
 				};
 			};
@@ -345,6 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276E737D2242ED3300DF929D /* TVOS360Video.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +402,9 @@
 				934A49891D46B446001AD295 /* NYT360CameraController.m in Sources */,
 				934A498B1D46B446001AD295 /* NYT360PlayerScene.m in Sources */,
 				47DCD2A41D493E1400FBCD4B /* NYT360EulerAngleCalculations.m in Sources */,
+				276E73872242F48B00DF929D /* TVOS360ViewController.m in Sources */,
 				472325001D5240DF00784F8F /* NYT360MotionManager.m in Sources */,
+				276E73D7224308E500DF929D /* NYT360ViewControllerBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				276E73D8224308E500DF929D /* NYT360ViewControllerBase.m in Sources */,
 				471705571D639FB1003D542B /* NYT360CameraPanGestureRecognizer.m in Sources */,
 				470DB5DD1D49A058001DD20C /* NYT360CameraController.m in Sources */,
 				470DB5DE1D49A058001DD20C /* NYT360EulerAngleCalculations.m in Sources */,
@@ -405,6 +433,7 @@
 				4736BBF51D53941A00262306 /* ViewController.m in Sources */,
 				47CD32371D539677000B3313 /* main.m in Sources */,
 				4736BBF41D53941700262306 /* AppDelegate.m in Sources */,
+				276E73D9224308E500DF929D /* NYT360ViewControllerBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -684,6 +713,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = GRNA8M72WM;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -705,7 +735,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = nyt.NYT360VideoExample;
+				PRODUCT_BUNDLE_IDENTIFIER = nyt.NYT360VideoExample.kyle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
@@ -735,6 +765,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = GRNA8M72WM;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -749,7 +780,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = nyt.NYT360VideoExample;
+				PRODUCT_BUNDLE_IDENTIFIER = nyt.NYT360VideoExample.kyle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
