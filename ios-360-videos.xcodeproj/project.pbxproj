@@ -81,6 +81,7 @@
 		276E73852242F48B00DF929D /* TVOS360ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVOS360ViewController.m; sourceTree = "<group>"; };
 		276E73D5224308E500DF929D /* NYT360ViewControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NYT360ViewControllerBase.m; sourceTree = "<group>"; };
 		276E73D6224308E500DF929D /* NYT360ViewControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYT360ViewControllerBase.h; sourceTree = "<group>"; };
+		337DC8B32C0FD0B70022458A /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		470DB5D91D494F90001DD20C /* NYT360DataTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYT360DataTypes.h; sourceTree = "<group>"; };
 		472324FC1D523F6000784F8F /* NYT360MotionManagement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NYT360MotionManagement.h; sourceTree = "<group>"; };
 		472324FD1D5240DF00784F8F /* NYT360MotionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NYT360MotionManager.h; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		934A493D1D46AFBB001AD295 = {
 			isa = PBXGroup;
 			children = (
+				337DC8B32C0FD0B70022458A /* Package.swift */,
 				934A49551D46B318001AD295 /* Metadata */,
 				934A49521D46B119001AD295 /* Sources */,
 				934A495D1D46B3B5001AD295 /* NYT360VideoTests */,
@@ -334,6 +336,7 @@
 				TargetAttributes = {
 					934A49481D46B0A1001AD295 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 1540;
 					};
 					934A495B1D46B3B5001AD295 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -349,6 +352,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -542,6 +546,8 @@
 				PRODUCT_NAME = NYT360Video;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -593,6 +599,7 @@
 				PRODUCT_NAME = NYT360Video;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
