@@ -8,7 +8,11 @@ let package = Package(
     platforms: [
         .tvOS(.v10),
     ],
-    products: [],
+    products: [
+        .library(
+            name: "TVOS360Video",
+            targets: ["TVOS360Video"])
+    ],
     dependencies: [],
     targets: [
         .target(name: "TVOS360Video",
