@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'TVOS360Video'
-    s.version          = '1.2.0'
+    s.version          = '1.2.1'
     s.summary          = 'TVOS360Video (based on NYT360Video) plays 360º video streamed from an AVPlayer on tvOS.'
 
     s.description      = <<-DESC
