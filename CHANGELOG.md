@@ -4,6 +4,9 @@ Changes for users of the library currently on `develop`:
 
 _This space intentionally left blank._
 
+## [1.2.1]
+- fix package.swift
+
 ## [1.2.0]
 - add support for tvOS
 - add Swift Package support
