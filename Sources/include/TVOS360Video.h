@@ -16,8 +16,8 @@ FOUNDATION_EXPORT const unsigned char TVOS360VideoVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <NYT360Video/PublicHeader.h>
 
-#import <TVOS360Video/TVOS360ViewController.h>
-#import <TVOS360Video/NYT360DataTypes.h>
-#import <TVOS360Video/NYT360MotionManagement.h>
-#import <TVOS360Video/NYT360MotionManager.h>
-#import <TVOS360Video/NYT360CameraPanGestureRecognizer.h>
+#import <TVOS360ViewController.h>
+#import <NYT360DataTypes.h>
+#import <NYT360MotionManagement.h>
+#import <NYT360MotionManager.h>
+#import <NYT360CameraPanGestureRecognizer.h>

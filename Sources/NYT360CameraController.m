@@ -6,9 +6,9 @@
 //  Copyright © 2016 The New York Times Company. All rights reserved.
 //
 
-#import "NYT360CameraController.h"
+#import "include/NYT360CameraController.h"
 #import "NYT360EulerAngleCalculations.h"
-#import "NYT360CameraPanGestureRecognizer.h"
+#import "include/NYT360CameraPanGestureRecognizer.h"
 
 static const CGPoint startingPosition = { 3.14, 0 };
 

@@ -6,7 +6,7 @@
 //  Copyright © 2016 The New York Times Company. All rights reserved.
 //
 
-#import "NYT360MotionManager.h"
+#import "include/NYT360MotionManager.h"
 
 ///-----------------------------------------------------------------------------
 /// NYT360MotionManagerObserverItem

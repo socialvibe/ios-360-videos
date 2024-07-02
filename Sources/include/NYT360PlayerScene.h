@@ -9,6 +9,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @import SceneKit;
+@import AVFoundation;
 
 /**
  A 3D video playback scene.

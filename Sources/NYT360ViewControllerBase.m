@@ -6,9 +6,9 @@
 //  Copyright © 2019 true[X]media. All rights reserved.
 //
 
-#import "NYT360ViewControllerBase.h"
-#import "NYT360CameraController.h"
-#import "NYT360PlayerScene.h"
+#import "include/NYT360ViewControllerBase.h"
+#import "include/NYT360CameraController.h"
+#import "include/NYT360PlayerScene.h"
 
 CGRect NYT360ViewControllerSceneFrameForContainingBounds(CGRect containingBounds, CGSize underlyingSceneSize) {
     

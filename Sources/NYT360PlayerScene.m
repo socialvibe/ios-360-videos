@@ -9,7 +9,7 @@
 @import SpriteKit;
 @import AVFoundation;
 
-#import "NYT360PlayerScene.h"
+#import "include/NYT360PlayerScene.h"
 
 @class NYTSKVideoNode;
 

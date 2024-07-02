@@ -15,7 +15,7 @@
 extern CGFloat const NYT360EulerAngleCalculationNoiseThresholdDefault;
 extern float const NYT360EulerAngleCalculationDefaultReferenceCompassAngle;
 
-#import "NYT360DataTypes.h"
+#import "include/NYT360DataTypes.h"
 
 #pragma mark - Data Types
 

@@ -7,8 +7,8 @@
 //
 
 #import "NYT360ViewController.h"
-#import "NYT360CameraController.h"
-#import "NYT360PlayerScene.h"
+#import "include/NYT360CameraController.h"
+#import "include/NYT360PlayerScene.h"
 
 
 @implementation NYT360ViewController

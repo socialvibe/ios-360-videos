@@ -5,8 +5,8 @@
 //  Created by Thiago on 7/12/16.
 //  Copyright © 2016 The New York Times Company. All rights reserved.
 //
-#import "NYT360ViewControllerBase.h"
-#import "NYT360MotionManagement.h"
+#import "include/NYT360ViewControllerBase.h"
+#import "include/NYT360MotionManagement.h"
 
 
 

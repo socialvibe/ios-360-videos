@@ -6,7 +6,7 @@
 //  Copyright © 2019 true[X]media. All rights reserved.
 //
 
-#import "TVOS360ViewController.h"
+#import "include/TVOS360ViewController.h"
 
 @implementation TVOS360ViewController
 
