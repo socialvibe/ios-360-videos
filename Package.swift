@@ -16,7 +16,11 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(name: "TVOS360Video",
-               path: "Sources")
+               path: "Sources",
+               publicHeadersPath: "include",
+                cSettings: [
+                    .headerSearchPath(".")
+                ])
     ]
 )
 

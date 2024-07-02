@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
     s.tvos.deployment_target = '10.0'
 
     s.source_files = 'Sources/**/*.{h,m}'
-    s.public_header_files = 'Sources/TVOS360Video.h', 'Sources/NYT360ViewControllerBase.h', 'Sources/TVOS360ViewController.h', 'Sources/NYT360DataTypes.h', 'Sources/NYT360MotionManagement.h', 'Sources/NYT360MotionManager.h', 'Sources/NYT360CameraPanGestureRecognizer.h', 'Sources/NYT360CameraController.h', 'Sources/NYT360PlayerScene.h'
+    s.public_header_files = 'Sources/include/*.{h,m}'
 
     s.frameworks = 'UIKit', 'SceneKit', 'SpriteKit', 'AVFoundation'
 end
